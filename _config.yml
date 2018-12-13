@@ -1,5 +1,5 @@
-title:            Site Title
-description:      Describe your website here.
+title:            새 하드웨어 용량 초과
+description:      누구를 위한 정보도 아닌 그냥 끄적거림
 disqus_shortname: 
 reading_time:     true
 words_per_minute: 200
@@ -9,10 +9,10 @@ url:
 
 # Owner/author information
 owner:
-  name:           Your Name
+  name:           oneandonlyme
   avatar:         avatar.jpg
   bio:            "Your bio goes here. It shouldn't be super long but a good sentence or two should suffice."
-  email:          you@email.com
+  email:
   # Social networking links used in footer. Update and remove as you like.
   twitter:        
   facebook:       
