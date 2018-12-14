@@ -1,12 +1,12 @@
 ---
 layout: page
 title: About Me
-comments: false
-modified: 2018.12.13.
 image:
-  feature: abstract-4.jpg
+  feature: abstract-5.jpg
   credit: dargadgetz
   creditlink: http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/
+comments: false
+modified: 2018.12.13.
 ---
 
 기본 [Github](http://github.com/mmistakes) : 기본 주소
