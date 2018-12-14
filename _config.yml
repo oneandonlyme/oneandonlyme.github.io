@@ -86,4 +86,4 @@ exclude:
   - node_modules
   - package.json
   - spec
-  - tmp
+  - /tmp/*
