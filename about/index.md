@@ -13,7 +13,7 @@ modified: 2018.12.13.
 기본 [Github](https://github.com/oneandonlyme) : 기본 주소
 
 
-## HPSTR 특징 (확인 필요):
+## 헤더다 헤더:
 
 * Tistory 블러그 이전 중
 * 잡다한 이야기들 작성 예정
