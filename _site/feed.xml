@@ -1,2 +1,92 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-12-17T15:48:14+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">새 하드웨어 용량 초과</title><subtitle>누구를 위한 정보도 아닌 그냥 끄적거림</subtitle><entry><title type="html">첫번째 포스팅</title><link href="http://localhost:4000/Frist-post/" rel="alternate" type="text/html" title="첫번째 포스팅" /><published>2018-12-14T00:00:00+09:00</published><updated>2018-12-14T00:00:00+09:00</updated><id>http://localhost:4000/Frist-post</id><content type="html" xml:base="http://localhost:4000/Frist-post/">&lt;p&gt;이제 마크 다운을 이용한 포스팅이 가능합니다
-신난다 마크다&lt;/p&gt;</content><author><name></name></author><category term="끄적거림" /><summary type="html">이제 마크 다운을 이용한 포스팅이 가능합니다 신난다 마크다</summary></entry></feed>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-12-17T17:21:22+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">새 하드웨어 용량 초과</title><subtitle>누구를 위한 정보도 아닌 그냥 끄적거림</subtitle><entry><title type="html">iPhone 점검 환경 구성</title><link href="http://localhost:4000/iPhone_%EC%A0%90%EA%B2%80_%ED%99%98%EA%B2%BD_%EA%B5%AC%EC%84%B1/" rel="alternate" type="text/html" title="iPhone 점검 환경 구성" /><published>2018-12-14T00:00:00+09:00</published><updated>2018-12-14T00:00:00+09:00</updated><id>http://localhost:4000/iPhone_%EC%A0%90%EA%B2%80_%ED%99%98%EA%B2%BD_%EA%B5%AC%EC%84%B1</id><content type="html" xml:base="http://localhost:4000/iPhone_%EC%A0%90%EA%B2%80_%ED%99%98%EA%B2%BD_%EA%B5%AC%EC%84%B1/">&lt;ul&gt;
+  &lt;li&gt;디바이스 정보 : iPhone 5 (iOS 10.3.3 - h3lix jailbreak)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;iOS란?
+    &lt;blockquote&gt;
+      &lt;p&gt;iOS는 애플사의 아이폰, 아이팟 터치 그리고 아이패드에 내장되어 있는 모바일 운영 체제로 OS X를 기반으로 만들어져 있으며, OS X와 마찬가지로 다윈 파운데이션을 기반으로 하고있다.&lt;/p&gt;
+    &lt;/blockquote&gt;
+
+    &lt;figure&gt;
+  	&lt;img alt=&quot;&quot; src=&quot;https://user-images.githubusercontent.com/16396760/50071888-a1e22800-0216-11e9-95f7-8357b798e104.png&quot; /&gt;
+  &lt;/figure&gt;
+  &lt;/li&gt;
+  &lt;li&gt;iOS 구조 및 특징
+    &lt;blockquote&gt;
+      &lt;p&gt;iOS는 기본적으로 앱마다 별도의 파일을 생성하여 기본 리소스가 공유되지 않도록하며, 이른 샌드박스(Sandbox)라고 한다.&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Jailbreak 방법
+    &lt;ul&gt;
+      &lt;li&gt;iOS 10.3.3 (iPhone5 최신버전)은 &lt;a href=&quot;https://h3lix.tihmstar.net/&quot;&gt;h3lix&lt;/a&gt;로 Semi-Jailbreak 가능&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;점검용 도구 설치
+    &lt;ul&gt;
+      &lt;li&gt;기본 Cydia App
+        &lt;ul&gt;
+          &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;OpenSSH&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;BigBoss Recommended Tools&lt;/code&gt; :  진단 시 유용한 도구를 쉽게 설치 (ex, cURL, Class-Dump, SQLite 등)&lt;/li&gt;
+          &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;MobileTerminal&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;iFile&lt;/code&gt; &amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;Filza&lt;/code&gt; : iDevice의 File system 접근이 가능&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;fria : &lt;code class=&quot;highlighter-rouge&quot;&gt;Cydia&lt;/code&gt;에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;repository&lt;/code&gt; URL 추가 &lt;code class=&quot;highlighter-rouge&quot;&gt;https://build.frida.re&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;https://code.google.com/p/networkpx/wiki/class_dump_z&quot;&gt;Class_dump_z&lt;/a&gt; : Class-dump는 Ojective-C class 추출용으로 사용하는 커맨드 라인도구이며 iOS 정적분석 시 필요한 도구
+        &lt;ul&gt;
+          &lt;li&gt;설치방법
+            &lt;div class=&quot;language-terminal highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;  #&lt;/span&gt; wget http://networkpx.googlecode.com/files/class-dump-z_0.2a.tar.gz
+&lt;span class=&quot;gp&quot;&gt;  #&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;tar &lt;/span&gt;xvfz class-dump-z_0.2a.tar.gz
+&lt;span class=&quot;gp&quot;&gt;  #&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;mv &lt;/span&gt;class-dump-z /usr/bin/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;            &lt;/div&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;https://github.com/stefanesser/dumpdecrypted&quot;&gt;dumpDecrypted&lt;/a&gt; : dumpDecrypted는 아이폰 app 실행파일은 암호화되어 있으며 실행 시 메모리에 로딩 전에 암호를 해독하여 메모리에 적제된 실행파일을 GDB를 이용하여 메모리 덤프를 하는 번거로운 작업 없이 실행파일 해독 가능한 도구
+        &lt;ul&gt;
+          &lt;li&gt;설치방법
+            &lt;div class=&quot;language-terminal highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;  #&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;DYLD_INSERT_LIBRARIES&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;dumpdecrypted.dylib /var/mobile/Applications/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/Scan.app/Scan
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;            &lt;/div&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Theos : Theos는 Xcode를 사용하지 않고 iOS 소프트웨어를 개발, 관리 가능한 cross-platform 개발 도구임. BigBoss Recommended Tools를 정상적으로 설치하면 installtheos3 명령어를 실행하여 자동 설치 가능&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;https://github.com/KJCracks/Clutch&quot;&gt;Clutch&lt;/a&gt; : Clutch는 앱 크랙을 효율적으로 처리하고자 자동화된 앱 크랙 도구
+        &lt;ul&gt;
+          &lt;li&gt;설치방법
+            &lt;div class=&quot;language-terminal highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;  #&lt;/span&gt; wget https://github.com/KJCracks/Clutch/archive/1.4.5-git2.tar.gz
+&lt;span class=&quot;gp&quot;&gt;  #&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;tar &lt;/span&gt;xvfz Clutch-1.4.5-git2.tar.gz
+&lt;span class=&quot;gp&quot;&gt;  #&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;chmod &lt;/span&gt;755 clutch
+&lt;span class=&quot;gp&quot;&gt;  #&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;chown &lt;/span&gt;root clutch
+&lt;span class=&quot;gp&quot;&gt;  #&lt;/span&gt; clutch
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;            &lt;/div&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;https://github.com/ptoomey3/Keychain-Dumper&quot;&gt;Keychain-dumper&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;https://www.cycript.org&quot;&gt;Cycript&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;동작 확인
+            &lt;div class=&quot;language-terminal highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;  #&lt;/span&gt; cycript
+&lt;span class=&quot;gp&quot;&gt;  cy#&lt;/span&gt; var &lt;span class=&quot;nv&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 2
+&lt;span class=&quot;gp&quot;&gt;  cy#&lt;/span&gt; Math.pow&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;a, 3&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;  cy#&lt;/span&gt; 5 + 7
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;            &lt;/div&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;https://www.veracode.com/iret-ios-reverse-engineering-toolkit-veracode&quot;&gt;iRET&lt;/a&gt; : iOS에서 실행 가능한 APP을 모의해킹 시 반복되는 작업을 줄이기 위한 도구로 python으로 제작&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;5.&lt;/p&gt;
+
+&lt;p&gt;6.&lt;/p&gt;
+
+&lt;p&gt;7.&lt;/p&gt;
+
+&lt;p&gt;작성중..&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.theiphonewiki.com/&quot;&gt;TheiPhoneWiki&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="mobile" /><category term="iOS" /><summary type="html">디바이스 정보 : iPhone 5 (iOS 10.3.3 - h3lix jailbreak)</summary></entry></feed>

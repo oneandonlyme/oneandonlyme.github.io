@@ -125,7 +125,7 @@
   <header>
     
     <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2018-12-14T00:00:00+09:00"><a href="http://localhost:4000/Frist-post/">December 14, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About oneandonlyme">oneandonlyme</a></span></span>
+      <span class="entry-date date published updated"><time datetime="2018-12-14T00:00:00+09:00"><a href="http://localhost:4000/iPhone_%EC%A0%90%EA%B2%80_%ED%99%98%EA%B2%BD_%EA%B5%AC%EC%84%B1/">December 14, 2018</a></time></span><span class="author vcard"><span class="fn"><a href="http://localhost:4000/about/" title="About oneandonlyme">oneandonlyme</a></span></span>
       
       <span class="entry-reading-time">
         <i class="fa fa-clock-o"></i>
@@ -135,12 +135,103 @@ Reading time ~1 minute
       
     </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title"><a href="http://localhost:4000/Frist-post/" rel="bookmark" title="첫번째 포스팅" itemprop="url">첫번째 포스팅</a></h1>
+      <h1 class="entry-title"><a href="http://localhost:4000/iPhone_%EC%A0%90%EA%B2%80_%ED%99%98%EA%B2%BD_%EA%B5%AC%EC%84%B1/" rel="bookmark" title="iPhone 점검 환경 구성" itemprop="url">iPhone 점검 환경 구성</a></h1>
     
   </header>
   <div class="entry-content">
-    <p>이제 마크 다운을 이용한 포스팅이 가능합니다
-신난다 마크다</p>
+    <ul>
+  <li>디바이스 정보 : iPhone 5 (iOS 10.3.3 - h3lix jailbreak)</li>
+</ul>
+
+<ol>
+  <li>iOS란?
+    <blockquote>
+      <p>iOS는 애플사의 아이폰, 아이팟 터치 그리고 아이패드에 내장되어 있는 모바일 운영 체제로 OS X를 기반으로 만들어져 있으며, OS X와 마찬가지로 다윈 파운데이션을 기반으로 하고있다.</p>
+    </blockquote>
+
+    <figure>
+  	<img alt="" src="https://user-images.githubusercontent.com/16396760/50071888-a1e22800-0216-11e9-95f7-8357b798e104.png" />
+  </figure>
+  </li>
+  <li>iOS 구조 및 특징
+    <blockquote>
+      <p>iOS는 기본적으로 앱마다 별도의 파일을 생성하여 기본 리소스가 공유되지 않도록하며, 이른 샌드박스(Sandbox)라고 한다.</p>
+    </blockquote>
+  </li>
+  <li>Jailbreak 방법
+    <ul>
+      <li>iOS 10.3.3 (iPhone5 최신버전)은 <a href="https://h3lix.tihmstar.net/">h3lix</a>로 Semi-Jailbreak 가능</li>
+    </ul>
+  </li>
+  <li>점검용 도구 설치
+    <ul>
+      <li>기본 Cydia App
+        <ul>
+          <li><code class="highlighter-rouge">OpenSSH</code></li>
+          <li><code class="highlighter-rouge">BigBoss Recommended Tools</code> :  진단 시 유용한 도구를 쉽게 설치 (ex, cURL, Class-Dump, SQLite 등)</li>
+          <li><code class="highlighter-rouge">MobileTerminal</code></li>
+          <li><code class="highlighter-rouge">iFile</code> &gt; <code class="highlighter-rouge">Filza</code> : iDevice의 File system 접근이 가능</li>
+        </ul>
+      </li>
+      <li>fria : <code class="highlighter-rouge">Cydia</code>에서 <code class="highlighter-rouge">repository</code> URL 추가 <code class="highlighter-rouge">https://build.frida.re</code></li>
+      <li><a href="https://code.google.com/p/networkpx/wiki/class_dump_z">Class_dump_z</a> : Class-dump는 Ojective-C class 추출용으로 사용하는 커맨드 라인도구이며 iOS 정적분석 시 필요한 도구
+        <ul>
+          <li>설치방법
+            <div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">  #</span> wget http://networkpx.googlecode.com/files/class-dump-z_0.2a.tar.gz
+<span class="gp">  #</span> <span class="nb">tar </span>xvfz class-dump-z_0.2a.tar.gz
+<span class="gp">  #</span> <span class="nb">mv </span>class-dump-z /usr/bin/
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+      <li><a href="https://github.com/stefanesser/dumpdecrypted">dumpDecrypted</a> : dumpDecrypted는 아이폰 app 실행파일은 암호화되어 있으며 실행 시 메모리에 로딩 전에 암호를 해독하여 메모리에 적제된 실행파일을 GDB를 이용하여 메모리 덤프를 하는 번거로운 작업 없이 실행파일 해독 가능한 도구
+        <ul>
+          <li>설치방법
+            <div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">  #</span> <span class="nv">DYLD_INSERT_LIBRARIES</span><span class="o">=</span>dumpdecrypted.dylib /var/mobile/Applications/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/Scan.app/Scan
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+      <li>Theos : Theos는 Xcode를 사용하지 않고 iOS 소프트웨어를 개발, 관리 가능한 cross-platform 개발 도구임. BigBoss Recommended Tools를 정상적으로 설치하면 installtheos3 명령어를 실행하여 자동 설치 가능</li>
+      <li><a href="https://github.com/KJCracks/Clutch">Clutch</a> : Clutch는 앱 크랙을 효율적으로 처리하고자 자동화된 앱 크랙 도구
+        <ul>
+          <li>설치방법
+            <div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">  #</span> wget https://github.com/KJCracks/Clutch/archive/1.4.5-git2.tar.gz
+<span class="gp">  #</span> <span class="nb">tar </span>xvfz Clutch-1.4.5-git2.tar.gz
+<span class="gp">  #</span> <span class="nb">chmod </span>755 clutch
+<span class="gp">  #</span> <span class="nb">chown </span>root clutch
+<span class="gp">  #</span> clutch
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+      <li><a href="https://github.com/ptoomey3/Keychain-Dumper">Keychain-dumper</a></li>
+      <li><a href="https://www.cycript.org">Cycript</a>
+        <ul>
+          <li>동작 확인
+            <div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">  #</span> cycript
+<span class="gp">  cy#</span> var <span class="nv">a</span><span class="o">=</span> 2
+<span class="gp">  cy#</span> Math.pow<span class="o">(</span>a, 3<span class="o">)</span>
+<span class="gp">  cy#</span> 5 + 7
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+      <li><a href="https://www.veracode.com/iret-ios-reverse-engineering-toolkit-veracode">iRET</a> : iOS에서 실행 가능한 APP을 모의해킹 시 반복되는 작업을 줄이기 위한 도구로 python으로 제작</li>
+    </ul>
+  </li>
+</ol>
+
+<p>5.</p>
+
+<p>6.</p>
+
+<p>7.</p>
+
+<p>작성중..</p>
+
+<p><a href="https://www.theiphonewiki.com/">TheiPhoneWiki</a></p>
+
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
