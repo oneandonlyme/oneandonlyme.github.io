@@ -15,5 +15,9 @@ modified: 2018.12.13.
 
 ## 헤더다 헤더:
 
-* Tistory 블러그 이전 중
-* 잡다한 이야기들 작성 예정
+* [Tistory](https://blog.oneandonlyme.xyz/) 블러그 이전 중
+
+
+## 공부 :
+* 마크다운 사용법 숙지
+

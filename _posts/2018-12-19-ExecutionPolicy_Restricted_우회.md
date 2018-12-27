@@ -7,33 +7,78 @@ tags: [PowerShell]
 ---
 
 
-1. 개요
+## 개요
+> 윈도우 파워셸(Windows PowerShell)은 마이크로소프트가 개발한 확장 가능한 명령 줄 인터페이스(CLI) 셸 및 스크립트 언어를 특징으로 하는 명령어 인터프리터이다. 스크립트 언어는 닷넷 프레임워크 2.0을 기반으로 객체 지향에 근거해 설계되었다. - wikipedia
 
-2.
-3.
-4.
-5.
-6.
-
-
-
-
-
-
-
-
+- `ps1` 파일은 기본 보안정책으로 사용이 불가능
+    + Windows Server 2012 R2만 기본 보안정책 설정이 `RemoteSigned`
+    + 그 외 모든 버전(Windows 8.1 포함)은 기본 보안정책 설정이 `Restricted`
+- 스크립트를 실행하려면 Execution Policy 허용 필요
+    + 로컬 컴퓨터에서는 관리자 권한으로 Execution Policy 설정이 가능
+    + 보안 강화를 위해 Active Directory의 Group Policy를 통하여 설정 가능  
+    + Active Directory > Group Policy Management > `Turn on Script Execution` 설정
+    ![](https://user-images.githubusercontent.com/16396760/50433736-61249600-091d-11e9-94f5-5d66aa02c215.png)
+    + Group Policy 설정하면 관리자 권한으로도 Policy Execution 을 변경 불가
+    ![](https://user-images.githubusercontent.com/16396760/50433738-61bd2c80-091d-11e9-9efd-b8d472b55b08.PNG)
 
 
+-----
+## 테스트 환경 설정
 
-
-
-
-<figure>
-<img alt="" src="">
-</figure>
-
-
+### Execution Policy 확인
+```Powershell
+ PS > Get-ExecutionPolicy -List | ft -Autosize
+```
 ![001](https://user-images.githubusercontent.com/16396760/50223763-752d3c80-03df-11e9-87da-b9c1de4b4c6d.png)
+
+### 실행 정책 변경 (관리자 권한)
+```Powershell
+PS > Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+PS > Set-ExecutionPolicy Bypass
+PS > Set-ExecutionPolicy Restricted -Force
+```
+
+### Execution Policy 종류
+
+| Policy | Local Script 실행 | Remote Script 실행 |
+|:------:|:---------------:|:-----------------:| 
+| Restricted| 불가능| 불가능 |
+| AllSigned | 디지털 서명된 스크립트실행 가능 | 디지털 서명된 스크립트실행 가능|
+| RemoteSigned | 가능 | 디지털 서명된 스크립트실행 가능|
+| Unrestricted | 가능 | 가능 |
+| Bypass | 가능 | 가능 |
+
+
+- Remote Signed
+    + 로컬 저장된 스크립트는 실행 가능
+    + 원격에서 다운로드한 스크립트는 디지털 서명된 경우에만 실행 가능
+        ```  
+        PS > \\[원격]\Process.ps1
+        PS > invoke-Expression -Command \\[원격]\Process.ps1
+         ```
+- UnRestricted
+    + 원격에 있는 스크립트를 실행할때는 경고창을 출력후 실행
+- Restricted
+    + 로컬/원격 스크립트 모두 실행 불가
+- Bypass
+    + 로컬/원격 스크립트 실행 가능
+         ```
+        # 관리자 사용 
+        PS > Set-ExcutionPolicy -Scope CurrentUser -ExecutionPolicy Bypass -Force
+         ```
+- AllSigned
+    + 스크립트에 디지털 서명이 되어있지 않으면 실행 불가
+    + Group Policy로 AllSigned로 설정하면 각 컴퓨터에서는 설정 변경을 하지 못하므로 디지털 서명된 스크립트 파일만 실행 가능
+
+----
+## 정책을 우회 하여 PowerShell 실행
+간단한 스크립트를 작성하여 ps1파일로 저장 후 실행
+```PowerShell
+Write-Host "Hello World! run me!!!"
+```
+
+
+
 
 ![002](https://user-images.githubusercontent.com/16396760/50223764-752d3c80-03df-11e9-80e0-9ec3bf400bc2.png)
 
