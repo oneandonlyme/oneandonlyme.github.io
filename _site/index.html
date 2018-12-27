@@ -280,7 +280,7 @@ PS &gt; Set-ExecutionPolicy Restricted -Force
     <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Get-Content .run.ps1 | PowerShell.exe -noprofile - 
 </code></pre></div>    </div>
     <p><img src="https://user-images.githubusercontent.com/16396760/50223767-75c5d300-03df-11e9-8f83-27d1dc04ad28.png" alt="005" /></p>
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> TYPE .runme.ps1 | PowerShell.exe -noprofile -
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> TYPE .run.ps1 | PowerShell.exe -noprofile -
 </code></pre></div>    </div>
     <p><img src="https://user-images.githubusercontent.com/16396760/50223769-75c5d300-03df-11e9-8f2b-c01bd19044a7.png" alt="007" /></p>
   </li>
@@ -290,12 +290,12 @@ PS &gt; Set-ExecutionPolicy Restricted -Force
 </code></pre></div>    </div>
   </li>
   <li>Use the Command Switch
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Powershell -command "Write-Host 'My voice is my passport, verify me.'"
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Powershell -command "Write-Host 'Hello World! run me!!!'"
 </code></pre></div>    </div>
     <p><img src="https://user-images.githubusercontent.com/16396760/50223770-765e6980-03df-11e9-81dd-c5e9aa859ffc.png" alt="008" /></p>
   </li>
   <li>Use the EncodeCommand Switch
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> $command = "Write-Host 'My voice is my passport, verify me.'" 
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> $command = "Write-Host 'Hello World! run me!!!'" 
  $bytes = [System.Text.Encoding]::Unicode.GetBytes($command) 
  $encodedCommand = [Convert]::ToBase64String($bytes) 
  powershell.exe -EncodedCommand $encodedCommand
@@ -305,7 +305,7 @@ PS &gt; Set-ExecutionPolicy Restricted -Force
     <p><img src="https://user-images.githubusercontent.com/16396760/50223773-76f70000-03df-11e9-86a1-2a7af5d44d3b.png" alt="011" /></p>
   </li>
   <li>Use the Invoke-Command Command
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> invoke-command -scriptblock {Write-Host "My voice is my passport, verify me."}
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> invoke-command -scriptblock {Write-Host "Hello World! run me!!!"}
 </code></pre></div>    </div>
     <p><img src="https://user-images.githubusercontent.com/16396760/50223774-76f70000-03df-11e9-8804-f8bc44943a33.png" alt="012" /></p>
   </li>
@@ -326,13 +326,13 @@ PS &gt; Set-ExecutionPolicy Restricted -Force
     <p><img src="https://user-images.githubusercontent.com/16396760/50223779-78282d00-03df-11e9-911b-02ce4f8cd44a.png" alt="016" /></p>
   </li>
   <li>Use the “Remote-Signed” Execution Policy Flag
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PowerShell.exe -ExecutionPolicy Remote-signed -File .runme.ps1
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PowerShell.exe -ExecutionPolicy Remote-signed -File .run.ps1
 </code></pre></div>    </div>
   </li>
   <li>Disable ExecutionPolicy by Swapping out the AuthorizationManager
     <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PS &gt; function Disable-ExecutionPolicy {($ctx = $executioncontext.gettype().getfield("_context","nonpublic,instance").getvalue( $executioncontext)).gettype().getfield("_authorizationManager","nonpublic,instance").setvalue($ctx, (new-object System.Management.Automation.AuthorizationManager "Microsoft.PowerShell"))}
 PS &gt; Disable-ExecutionPolicy
-PS &gt; .\runme.ps1
+PS &gt; .\run.ps1
 </code></pre></div>    </div>
     <p><img src="https://user-images.githubusercontent.com/16396760/50223780-78282d00-03df-11e9-91a6-973303e626c2.png" alt="017" /></p>
   </li>
@@ -353,6 +353,7 @@ PS &gt; .\runme.ps1
   </li>
 </ol>
 
+<hr />
 <h4 id="참조">참조</h4>
 <p><a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/set-executionpolicy?view=powershell-6">Microsoft</a><br />
  <a href="https://blog.netspi.com/15-ways-to-bypass-the-powershell-execution-policy/">NETSPI</a><br />

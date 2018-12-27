@@ -98,7 +98,7 @@ Write-Host "Hello World! run me!!!"
     ```
     ![005](https://user-images.githubusercontent.com/16396760/50223767-75c5d300-03df-11e9-8f83-27d1dc04ad28.png)
     ```
-    TYPE .runme.ps1 | PowerShell.exe -noprofile -
+    TYPE .run.ps1 | PowerShell.exe -noprofile -
     ```
     ![007](https://user-images.githubusercontent.com/16396760/50223769-75c5d300-03df-11e9-8f2b-c01bd19044a7.png)
 
@@ -110,13 +110,13 @@ Write-Host "Hello World! run me!!!"
 
 5. Use the Command Switch
     ```
-    Powershell -command "Write-Host 'My voice is my passport, verify me.'"
+    Powershell -command "Write-Host 'Hello World! run me!!!'"
     ```
     ![008](https://user-images.githubusercontent.com/16396760/50223770-765e6980-03df-11e9-81dd-c5e9aa859ffc.png)
 
 6. Use the EncodeCommand Switch
     ```
-    $command = "Write-Host 'My voice is my passport, verify me.'" 
+    $command = "Write-Host 'Hello World! run me!!!'" 
     $bytes = [System.Text.Encoding]::Unicode.GetBytes($command) 
     $encodedCommand = [Convert]::ToBase64String($bytes) 
     powershell.exe -EncodedCommand $encodedCommand
@@ -127,7 +127,7 @@ Write-Host "Hello World! run me!!!"
 
 7. Use the Invoke-Command Command
     ```
-    invoke-command -scriptblock {Write-Host "My voice is my passport, verify me."}
+    invoke-command -scriptblock {Write-Host "Hello World! run me!!!"}
     ```
     ![012](https://user-images.githubusercontent.com/16396760/50223774-76f70000-03df-11e9-8804-f8bc44943a33.png)
 
@@ -150,14 +150,14 @@ Write-Host "Hello World! run me!!!"
 
 11. Use the “Remote-Signed” Execution Policy Flag
     ```
-    PowerShell.exe -ExecutionPolicy Remote-signed -File .runme.ps1
+    PowerShell.exe -ExecutionPolicy Remote-signed -File .run.ps1
     ```
     
 12. Disable ExecutionPolicy by Swapping out the AuthorizationManager
     ```
     PS > function Disable-ExecutionPolicy {($ctx = $executioncontext.gettype().getfield("_context","nonpublic,instance").getvalue( $executioncontext)).gettype().getfield("_authorizationManager","nonpublic,instance").setvalue($ctx, (new-object System.Management.Automation.AuthorizationManager "Microsoft.PowerShell"))}
     PS > Disable-ExecutionPolicy
-    PS > .\runme.ps1
+    PS > .\run.ps1
     ```
     ![017](https://user-images.githubusercontent.com/16396760/50223780-78282d00-03df-11e9-91a6-973303e626c2.png)
 

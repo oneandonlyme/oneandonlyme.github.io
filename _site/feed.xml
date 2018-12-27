@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-12-27T10:51:55+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">새 하드웨어 용량 초과</title><subtitle>누구를 위한 정보도 아닌 그냥 끄적거림</subtitle><entry><title type="html">Execution Policy의 Restricted을 우회하여 PowerShell 실행</title><link href="http://localhost:4000/ExecutionPolicy_Restricted_%EC%9A%B0%ED%9A%8C/" rel="alternate" type="text/html" title="Execution Policy의 Restricted을 우회하여 PowerShell 실행" /><published>2018-12-19T00:00:00+09:00</published><updated>2018-12-19T00:00:00+09:00</updated><id>http://localhost:4000/ExecutionPolicy_Restricted_%EC%9A%B0%ED%9A%8C</id><content type="html" xml:base="http://localhost:4000/ExecutionPolicy_Restricted_%EC%9A%B0%ED%9A%8C/">&lt;h2 id=&quot;개요&quot;&gt;개요&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-12-27T11:23:05+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">새 하드웨어 용량 초과</title><subtitle>누구를 위한 정보도 아닌 그냥 끄적거림</subtitle><entry><title type="html">Execution Policy의 Restricted을 우회하여 PowerShell 실행</title><link href="http://localhost:4000/ExecutionPolicy_Restricted_%EC%9A%B0%ED%9A%8C/" rel="alternate" type="text/html" title="Execution Policy의 Restricted을 우회하여 PowerShell 실행" /><published>2018-12-19T00:00:00+09:00</published><updated>2018-12-19T00:00:00+09:00</updated><id>http://localhost:4000/ExecutionPolicy_Restricted_%EC%9A%B0%ED%9A%8C</id><content type="html" xml:base="http://localhost:4000/ExecutionPolicy_Restricted_%EC%9A%B0%ED%9A%8C/">&lt;h2 id=&quot;개요&quot;&gt;개요&lt;/h2&gt;
 &lt;blockquote&gt;
   &lt;p&gt;윈도우 파워셸(Windows PowerShell)은 마이크로소프트가 개발한 확장 가능한 명령 줄 인터페이스(CLI) 셸 및 스크립트 언어를 특징으로 하는 명령어 인터프리터이다. 스크립트 언어는 닷넷 프레임워크 2.0을 기반으로 객체 지향에 근거해 설계되었다. - wikipedia&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -139,7 +139,7 @@ PS &amp;gt; Set-ExecutionPolicy Restricted -Force
     &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; Get-Content .run.ps1 | PowerShell.exe -noprofile - 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
     &lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50223767-75c5d300-03df-11e9-8f83-27d1dc04ad28.png&quot; alt=&quot;005&quot; /&gt;&lt;/p&gt;
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; TYPE .runme.ps1 | PowerShell.exe -noprofile -
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; TYPE .run.ps1 | PowerShell.exe -noprofile -
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
     &lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50223769-75c5d300-03df-11e9-8f2b-c01bd19044a7.png&quot; alt=&quot;007&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
@@ -149,12 +149,12 @@ PS &amp;gt; Set-ExecutionPolicy Restricted -Force
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;Use the Command Switch
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; Powershell -command &quot;Write-Host 'My voice is my passport, verify me.'&quot;
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; Powershell -command &quot;Write-Host 'Hello World! run me!!!'&quot;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
     &lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50223770-765e6980-03df-11e9-81dd-c5e9aa859ffc.png&quot; alt=&quot;008&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;Use the EncodeCommand Switch
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; $command = &quot;Write-Host 'My voice is my passport, verify me.'&quot; 
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; $command = &quot;Write-Host 'Hello World! run me!!!'&quot; 
  $bytes = [System.Text.Encoding]::Unicode.GetBytes($command) 
  $encodedCommand = [Convert]::ToBase64String($bytes) 
  powershell.exe -EncodedCommand $encodedCommand
@@ -164,7 +164,7 @@ PS &amp;gt; Set-ExecutionPolicy Restricted -Force
     &lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50223773-76f70000-03df-11e9-86a1-2a7af5d44d3b.png&quot; alt=&quot;011&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;Use the Invoke-Command Command
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; invoke-command -scriptblock {Write-Host &quot;My voice is my passport, verify me.&quot;}
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; invoke-command -scriptblock {Write-Host &quot;Hello World! run me!!!&quot;}
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
     &lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50223774-76f70000-03df-11e9-8804-f8bc44943a33.png&quot; alt=&quot;012&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
@@ -185,13 +185,13 @@ PS &amp;gt; Set-ExecutionPolicy Restricted -Force
     &lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50223779-78282d00-03df-11e9-911b-02ce4f8cd44a.png&quot; alt=&quot;016&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;Use the “Remote-Signed” Execution Policy Flag
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PowerShell.exe -ExecutionPolicy Remote-signed -File .runme.ps1
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PowerShell.exe -ExecutionPolicy Remote-signed -File .run.ps1
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;Disable ExecutionPolicy by Swapping out the AuthorizationManager
     &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PS &amp;gt; function Disable-ExecutionPolicy {($ctx = $executioncontext.gettype().getfield(&quot;_context&quot;,&quot;nonpublic,instance&quot;).getvalue( $executioncontext)).gettype().getfield(&quot;_authorizationManager&quot;,&quot;nonpublic,instance&quot;).setvalue($ctx, (new-object System.Management.Automation.AuthorizationManager &quot;Microsoft.PowerShell&quot;))}
 PS &amp;gt; Disable-ExecutionPolicy
-PS &amp;gt; .\runme.ps1
+PS &amp;gt; .\run.ps1
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
     &lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50223780-78282d00-03df-11e9-91a6-973303e626c2.png&quot; alt=&quot;017&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
@@ -212,6 +212,7 @@ PS &amp;gt; .\runme.ps1
   &lt;/li&gt;
 &lt;/ol&gt;
 
+&lt;hr /&gt;
 &lt;h4 id=&quot;참조&quot;&gt;참조&lt;/h4&gt;
 &lt;p&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/set-executionpolicy?view=powershell-6&quot;&gt;Microsoft&lt;/a&gt;&lt;br /&gt;
  &lt;a href=&quot;https://blog.netspi.com/15-ways-to-bypass-the-powershell-execution-policy/&quot;&gt;NETSPI&lt;/a&gt;&lt;br /&gt;
