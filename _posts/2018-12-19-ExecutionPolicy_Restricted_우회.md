@@ -25,19 +25,19 @@ tags: [PowerShell]
 -----
 ## 테스트 환경 설정
 
-### Execution Policy 확인
-```Powershell
+### Execution Policy 확인  
+```
  PS > Get-ExecutionPolicy -List | ft -Autosize
 ```
 ![001](https://user-images.githubusercontent.com/16396760/50223763-752d3c80-03df-11e9-87da-b9c1de4b4c6d.png)
 
-### 실행 정책 변경 (관리자 권한)
-```Powershell
+### 실행 정책 변경 (관리자 권한)  
+```
 PS > Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 PS > Set-ExecutionPolicy Bypass
 PS > Set-ExecutionPolicy Restricted -Force
 ```
-
+  
 ### Execution Policy 종류
 
 | Policy | Local Script 실행 | Remote Script 실행 |
@@ -73,7 +73,7 @@ PS > Set-ExecutionPolicy Restricted -Force
 ----
 ## 정책을 우회 하여 PowerShell 실행
 간단한 스크립트를 작성하여 ps1파일로 저장 후 실행
-```PowerShell
+```
 Write-Host "Hello World! run me!!!"
 ```
 

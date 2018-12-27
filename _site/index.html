@@ -167,15 +167,15 @@ Reading time ~1 minute
 <h2 id="테스트-환경-설정">테스트 환경 설정</h2>
 
 <h3 id="execution-policy-확인">Execution Policy 확인</h3>
-<pre><code class="language-Powershell"> PS &gt; Get-ExecutionPolicy -List | ft -Autosize
-</code></pre>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> PS &gt; Get-ExecutionPolicy -List | ft -Autosize
+</code></pre></div></div>
 <p><img src="https://user-images.githubusercontent.com/16396760/50223763-752d3c80-03df-11e9-87da-b9c1de4b4c6d.png" alt="001" /></p>
 
 <h3 id="실행-정책-변경-관리자-권한">실행 정책 변경 (관리자 권한)</h3>
-<pre><code class="language-Powershell">PS &gt; Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PS &gt; Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 PS &gt; Set-ExecutionPolicy Bypass
 PS &gt; Set-ExecutionPolicy Restricted -Force
-</code></pre>
+</code></pre></div></div>
 
 <h3 id="execution-policy-종류">Execution Policy 종류</h3>
 
@@ -257,8 +257,8 @@ PS &gt; Set-ExecutionPolicy Restricted -Force
 <hr />
 <h2 id="정책을-우회-하여-powershell-실행">정책을 우회 하여 PowerShell 실행</h2>
 <p>간단한 스크립트를 작성하여 ps1파일로 저장 후 실행</p>
-<pre><code class="language-PowerShell">Write-Host "Hello World! run me!!!"
-</code></pre>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Write-Host "Hello World! run me!!!"
+</code></pre></div></div>
 
 <p><img src="https://user-images.githubusercontent.com/16396760/50223764-752d3c80-03df-11e9-80e0-9ec3bf400bc2.png" alt="002" /></p>
 

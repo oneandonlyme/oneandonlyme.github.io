@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-12-27T10:08:11+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">새 하드웨어 용량 초과</title><subtitle>누구를 위한 정보도 아닌 그냥 끄적거림</subtitle><entry><title type="html">Execution Policy의 Restricted을 우회하여 PowerShell 실행</title><link href="http://localhost:4000/ExecutionPolicy_Restricted_%EC%9A%B0%ED%9A%8C/" rel="alternate" type="text/html" title="Execution Policy의 Restricted을 우회하여 PowerShell 실행" /><published>2018-12-19T00:00:00+09:00</published><updated>2018-12-19T00:00:00+09:00</updated><id>http://localhost:4000/ExecutionPolicy_Restricted_%EC%9A%B0%ED%9A%8C</id><content type="html" xml:base="http://localhost:4000/ExecutionPolicy_Restricted_%EC%9A%B0%ED%9A%8C/">&lt;h2 id=&quot;개요&quot;&gt;개요&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-12-27T10:11:12+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">새 하드웨어 용량 초과</title><subtitle>누구를 위한 정보도 아닌 그냥 끄적거림</subtitle><entry><title type="html">Execution Policy의 Restricted을 우회하여 PowerShell 실행</title><link href="http://localhost:4000/ExecutionPolicy_Restricted_%EC%9A%B0%ED%9A%8C/" rel="alternate" type="text/html" title="Execution Policy의 Restricted을 우회하여 PowerShell 실행" /><published>2018-12-19T00:00:00+09:00</published><updated>2018-12-19T00:00:00+09:00</updated><id>http://localhost:4000/ExecutionPolicy_Restricted_%EC%9A%B0%ED%9A%8C</id><content type="html" xml:base="http://localhost:4000/ExecutionPolicy_Restricted_%EC%9A%B0%ED%9A%8C/">&lt;h2 id=&quot;개요&quot;&gt;개요&lt;/h2&gt;
 &lt;blockquote&gt;
   &lt;p&gt;윈도우 파워셸(Windows PowerShell)은 마이크로소프트가 개발한 확장 가능한 명령 줄 인터페이스(CLI) 셸 및 스크립트 언어를 특징으로 하는 명령어 인터프리터이다. 스크립트 언어는 닷넷 프레임워크 2.0을 기반으로 객체 지향에 근거해 설계되었다. - wikipedia&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -26,15 +26,15 @@
 &lt;h2 id=&quot;테스트-환경-설정&quot;&gt;테스트 환경 설정&lt;/h2&gt;
 
 &lt;h3 id=&quot;execution-policy-확인&quot;&gt;Execution Policy 확인&lt;/h3&gt;
-&lt;pre&gt;&lt;code class=&quot;language-Powershell&quot;&gt; PS &amp;gt; Get-ExecutionPolicy -List | ft -Autosize
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; PS &amp;gt; Get-ExecutionPolicy -List | ft -Autosize
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50223763-752d3c80-03df-11e9-87da-b9c1de4b4c6d.png&quot; alt=&quot;001&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;실행-정책-변경-관리자-권한&quot;&gt;실행 정책 변경 (관리자 권한)&lt;/h3&gt;
-&lt;pre&gt;&lt;code class=&quot;language-Powershell&quot;&gt;PS &amp;gt; Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PS &amp;gt; Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 PS &amp;gt; Set-ExecutionPolicy Bypass
 PS &amp;gt; Set-ExecutionPolicy Restricted -Force
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;execution-policy-종류&quot;&gt;Execution Policy 종류&lt;/h3&gt;
 
@@ -116,8 +116,8 @@ PS &amp;gt; Set-ExecutionPolicy Restricted -Force
 &lt;hr /&gt;
 &lt;h2 id=&quot;정책을-우회-하여-powershell-실행&quot;&gt;정책을 우회 하여 PowerShell 실행&lt;/h2&gt;
 &lt;p&gt;간단한 스크립트를 작성하여 ps1파일로 저장 후 실행&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-PowerShell&quot;&gt;Write-Host &quot;Hello World! run me!!!&quot;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Write-Host &quot;Hello World! run me!!!&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50223764-752d3c80-03df-11e9-80e0-9ec3bf400bc2.png&quot; alt=&quot;002&quot; /&gt;&lt;/p&gt;
 
