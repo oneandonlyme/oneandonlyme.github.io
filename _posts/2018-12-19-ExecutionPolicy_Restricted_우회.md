@@ -177,7 +177,7 @@ Write-Host "Hello World! run me!!!"
     ![021](https://user-images.githubusercontent.com/16396760/50223784-78c0c380-03df-11e9-8676-246d6810a134.png)
     ![020](https://user-images.githubusercontent.com/16396760/50223783-78c0c380-03df-11e9-83c4-007639c7203b.png)
 
-
+----
 #### 참조
  [Microsoft](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/set-executionpolicy?view=powershell-6)  
  [NETSPI](https://blog.netspi.com/15-ways-to-bypass-the-powershell-execution-policy/)  
