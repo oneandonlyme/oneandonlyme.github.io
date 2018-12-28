@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-12-27T11:23:05+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">새 하드웨어 용량 초과</title><subtitle>누구를 위한 정보도 아닌 그냥 끄적거림</subtitle><entry><title type="html">Execution Policy의 Restricted을 우회하여 PowerShell 실행</title><link href="http://localhost:4000/ExecutionPolicy_Restricted_%EC%9A%B0%ED%9A%8C/" rel="alternate" type="text/html" title="Execution Policy의 Restricted을 우회하여 PowerShell 실행" /><published>2018-12-19T00:00:00+09:00</published><updated>2018-12-19T00:00:00+09:00</updated><id>http://localhost:4000/ExecutionPolicy_Restricted_%EC%9A%B0%ED%9A%8C</id><content type="html" xml:base="http://localhost:4000/ExecutionPolicy_Restricted_%EC%9A%B0%ED%9A%8C/">&lt;h2 id=&quot;개요&quot;&gt;개요&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-12-28T14:59:31+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">새 하드웨어 용량 초과</title><subtitle>누구를 위한 정보도 아닌 그냥 끄적거림</subtitle><entry><title type="html">Execution Policy의 Restricted을 우회하여 PowerShell 실행</title><link href="http://localhost:4000/ExecutionPolicy_Restricted_%EC%9A%B0%ED%9A%8C/" rel="alternate" type="text/html" title="Execution Policy의 Restricted을 우회하여 PowerShell 실행" /><published>2018-12-19T00:00:00+09:00</published><updated>2018-12-19T00:00:00+09:00</updated><id>http://localhost:4000/ExecutionPolicy_Restricted_%EC%9A%B0%ED%9A%8C</id><content type="html" xml:base="http://localhost:4000/ExecutionPolicy_Restricted_%EC%9A%B0%ED%9A%8C/">&lt;h2 id=&quot;개요&quot;&gt;개요&lt;/h2&gt;
 &lt;blockquote&gt;
   &lt;p&gt;윈도우 파워셸(Windows PowerShell)은 마이크로소프트가 개발한 확장 가능한 명령 줄 인터페이스(CLI) 셸 및 스크립트 언어를 특징으로 하는 명령어 인터프리터이다. 스크립트 언어는 닷넷 프레임워크 2.0을 기반으로 객체 지향에 근거해 설계되었다. - wikipedia&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -225,9 +225,7 @@ PS &amp;gt; .\run.ps1
   &lt;p&gt;iOS는 애플사의 아이폰, 아이팟 터치 그리고 아이패드에 내장되어 있는 모바일 운영 체제로 OS X를 기반으로 만들어져 있으며, OS X와 마찬가지로 다윈 파운데이션을 기반으로 하고있다.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;figure&gt;
-    &lt;img alt=&quot;&quot; src=&quot;https://user-images.githubusercontent.com/16396760/50071888-a1e22800-0216-11e9-95f7-8357b798e104.png&quot; /&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50071888-a1e22800-0216-11e9-95f7-8357b798e104.png&quot; alt=&quot;Apple&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;ios-구조-및-특징&quot;&gt;iOS 구조 및 특징&lt;/h2&gt;
 &lt;blockquote&gt;
@@ -247,9 +245,13 @@ PS &amp;gt; .\run.ps1
       &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;BigBoss Recommended Tools&lt;/code&gt; :  진단 시 유용한 도구를 쉽게 설치 (ex, cURL, Class-Dump, SQLite 등)&lt;/li&gt;
       &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;MobileTerminal&lt;/code&gt;&lt;/li&gt;
       &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;iFile&lt;/code&gt; &amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;Filza&lt;/code&gt; : iDevice의 File system 접근이 가능&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Flex&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;BundleIDs&lt;/code&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;fria : &lt;code class=&quot;highlighter-rouge&quot;&gt;Cydia&lt;/code&gt;에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;repository&lt;/code&gt; URL 추가 &lt;code class=&quot;highlighter-rouge&quot;&gt;https://build.frida.re&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;fria : &lt;code class=&quot;highlighter-rouge&quot;&gt;Cydia&lt;/code&gt;에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;repository&lt;/code&gt; URL 추가 &lt;code class=&quot;highlighter-rouge&quot;&gt;https://build.frida.re&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://code.google.com/p/networkpx/wiki/class_dump_z&quot;&gt;Class_dump_z&lt;/a&gt; : Class-dump는 Ojective-C class 추출용으로 사용하는 커맨드 라인도구이며 iOS 정적분석 시 필요한 도구
     &lt;ul&gt;
       &lt;li&gt;설치방법
@@ -268,7 +270,15 @@ PS &amp;gt; .\run.ps1
       &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;Theos : Theos는 Xcode를 사용하지 않고 iOS 소프트웨어를 개발, 관리 가능한 cross-platform 개발 도구임. BigBoss Recommended Tools를 정상적으로 설치하면 installtheos3 명령어를 실행하여 자동 설치 가능&lt;/li&gt;
+  &lt;li&gt;Theos : Theos는 Xcode를 사용하지 않고 iOS 소프트웨어를 개발, 관리 가능한 cross-platform 개발 도구.
+    &lt;ul&gt;
+      &lt;li&gt;설치장법
+        &lt;div class=&quot;language-terminal highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;go&quot;&gt;  BigBoss Recommended Tools를 설치하면 installtheos3 명령어를 실행하여 자동 설치 가능
+&lt;/span&gt;&lt;span class=&quot;gp&quot;&gt;  #&lt;/span&gt; installtheos3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/KJCracks/Clutch&quot;&gt;Clutch&lt;/a&gt; : Clutch는 앱 크랙을 효율적으로 처리하고자 자동화된 앱 크랙 도구
     &lt;ul&gt;
       &lt;li&gt;설치방법
@@ -281,7 +291,9 @@ PS &amp;gt; .\run.ps1
       &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/ptoomey3/Keychain-Dumper&quot;&gt;Keychain-dumper&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/ptoomey3/Keychain-Dumper&quot;&gt;Keychain-dumper&lt;/a&gt; : 키체인(KeyChain)을 dump를 획득 가능한 도구&lt;/p&gt;
+  &lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.cycript.org&quot;&gt;Cycript&lt;/a&gt;
     &lt;ul&gt;
       &lt;li&gt;동작 확인
@@ -294,14 +306,4 @@ PS &amp;gt; .\run.ps1
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.veracode.com/iret-ios-reverse-engineering-toolkit-veracode&quot;&gt;iRET&lt;/a&gt; : iOS에서 실행 가능한 APP을 모의해킹 시 반복되는 작업을 줄이기 위한 도구로 python으로 제작&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;5.&lt;/p&gt;
-
-&lt;p&gt;6.&lt;/p&gt;
-
-&lt;p&gt;7.&lt;/p&gt;
-
-&lt;p&gt;작성중..&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.theiphonewiki.com/&quot;&gt;TheiPhoneWiki&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="mobile" /><category term="iOS" /><summary type="html">디바이스 정보 : iPhone 5 (iOS 10.3.3 - h3lix jailbreak)</summary></entry></feed>
+&lt;/ul&gt;</content><author><name></name></author><category term="mobile" /><category term="iOS" /><summary type="html">디바이스 정보 : iPhone 5 (iOS 10.3.3 - h3lix jailbreak)</summary></entry></feed>
