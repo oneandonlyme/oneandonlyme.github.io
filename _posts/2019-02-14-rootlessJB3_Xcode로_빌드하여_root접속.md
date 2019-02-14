@@ -10,7 +10,8 @@ tags: [mobile, iOS]
 
 
 ## rootlessJB란?
-> ..?
+> [설명](https://github.com/jakeajames/rootlessJB/blob/master/writeup.pdf)
+
 * rootlessJB3 지원 버전 : iOS 12.0 - 12.1.2
 
 ## rootlessJB 다운
