@@ -12,14 +12,14 @@ owner:
   name:           oneandonlyme
   avatar:         avatar.jpg
   bio:
-  email:
+  email:          1@oneandonlyme.xyz
   # Social networking links used in footer. Update and remove as you like.
   twitter:        
   facebook:       
-  github:         https://github.com/oneandonlyme
+  github:           oneandonlyme
   stackexchange:  
-  e-mail:         1@oneandonlyme.xyz
-  instagram:      oneandonly.me
+  linkedin:
+  instagram:        oneandonly.me
   flickr:         
   tumblr:         
   # google plus id, include the '+', eg +mmistakes
